@@ -1,0 +1,20 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+  <groupId>com.ss</groupId>
+  <artifactId>hz</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>JetDemo</name>
+  <description>This is a Jet Demo</description>
+  <dependencies>
+  <dependency>
+    <groupId>com.hazelcast.jet</groupId>
+    <artifactId>hazelcast-jet</artifactId>
+    <version>3.2</version>
+  </dependency>
+</dependencies>
+  
+</project>
