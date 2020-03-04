@@ -1,7 +1,7 @@
 Example showing Indexed text search with Jet
 
 Searches the directory /books
-Ignores works in Stopwords.txt
+Ignores words in Stopwords.txt
 
 Usage:
 
