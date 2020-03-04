@@ -51,6 +51,7 @@ import static java.util.concurrent.TimeUnit.NANOSECONDS;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
+
 /**
  * Builds, for a given set of text documents, an <em>inverted index</em>
  * that maps each word to the set of documents that contain it. It assigns
@@ -99,11 +100,11 @@ public class TfIdf {
     private static final Pattern DELIMITER = Pattern.compile("\\W+");
     private static final String INVERTED_INDEX = "inverted-index";
     private static final String CONSTANT_KEY = "constant";
-    private static final String stopwordsTxtFile="/Users/sharathsahadevan/eclipse-workspace/hz/src/main/resources/books/stopwords.txt";
+    // private static final String stopwordsTxtFile="/Users/sharathsahadevan/eclipse-workspace/hz/src/main/resources/books/stopwords.txt";
 
     private JetInstance jet;
 
-    private static Pipeline buildPipeline( String bookDirectoryFullPath ) {
+    private static Pipeline buildPipeline( String bookDirectoryFullPath , String stopwordsTxtFile ) {
        Path bookDirectory = getClasspathDirectory( bookDirectoryFullPath );
     	
         
@@ -190,13 +191,14 @@ public class TfIdf {
     private void go( String bookDirectoryFullPath , String stopwordsFullPath ) {
         System.out.println("Creating Jet instance 1");
         jet = Jet.newJetInstance();
-        buildInvertedIndex( bookDirectoryFullPath );
+        buildInvertedIndex( bookDirectoryFullPath , stopwordsFullPath  );
         System.out.println("size=" + jet.getMap(INVERTED_INDEX).size());
-        new SearchGui(jet.getMap(INVERTED_INDEX), docLines(stopwordsFullPath).collect(toSet()));
+        Set<String> stopwords = docLines(stopwordsFullPath).collect(toSet());
+        SearchGui mySearchGui = new SearchGui(jet.getMap(INVERTED_INDEX), stopwords) ;
     }
 
-    private void buildInvertedIndex( String bookDirectoryFullPath ) {
-        Job job = jet.newJob(buildPipeline( bookDirectoryFullPath ));
+    private void buildInvertedIndex( String bookDirectoryFullPath , String stopwordsFullPath  ) {
+        Job job = jet.newJob(buildPipeline( bookDirectoryFullPath , stopwordsFullPath  ));
         long start = System.nanoTime();
         job.join();
         System.out.println("Indexing took " + NANOSECONDS.toMillis(System.nanoTime() - start) + " milliseconds.");
