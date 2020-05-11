@@ -14,6 +14,20 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>JetDemo</name>
   <description>This is a Jet Demo</description>
+  
+  <!--   May 2020 - Added for S3 --> 
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-bom</artifactId>
+        <version>1.11.779</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  
   <dependencies>
     <dependency>
     <groupId>com.hazelcast.jet</groupId>
@@ -24,7 +38,12 @@
         <groupId>com.hazelcast.jet</groupId>
         <artifactId>hazelcast-jet-kafka</artifactId>
         <version>0.5.1</version>
-   </dependency>
+    </dependency>
+    
+     <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-java-sdk-s3</artifactId>
+      </dependency>
 
   <!--  
   <dependency>
