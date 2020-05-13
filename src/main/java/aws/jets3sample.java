@@ -9,7 +9,12 @@ import com.hazelcast.jet.pipeline.Pipeline;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 
-import com.hazelcast.jet.s3.S3Sources;
+// import com.hazelcast.jet.s3.S3Sources;
+import com.hazelcast.jet.Jet;
+import com.hazelcast.jet.JetInstance;
+import com.hazelcast.jet.pipeline.Pipeline;
+import com.hazelcast.jet.pipeline.Sinks;
+import com.hazelcast.jet.pipeline.Sources;
 
 
 public class jets3sample {
@@ -27,11 +32,13 @@ public class jets3sample {
 		    .credentialsProvider(StaticCredentialsProvider.create(credentials))
 		    .build();
 		    */
-
+   
 		Pipeline p = Pipeline.create();
+		/*
 		p.readFrom(S3Sources.s3(singletonList("sshzdemo"), "prefix",  () -> S3Client.builder().credentialsProvider(StaticCredentialsProvider.create(credentials)).build())
 		 .filter(line -> line.contains("ERROR"))
 		 .writeTo(Sinks.logger()));
+		 */
 		
 	}
 

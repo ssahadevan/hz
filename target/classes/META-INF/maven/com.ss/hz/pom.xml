@@ -3,8 +3,12 @@
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    
      <hazelcast.jet.version>3.2.2</hazelcast.jet.version>
+     <!--  Commented out
+     <hazelcast.jet.version>4.1</hazelcast.jet.version>
+     -->
+     
+     <maven.assembly.plugin.version>3.0.0</maven.assembly.plugin.version>
       
 
   </properties>
@@ -14,6 +18,41 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>JetDemo</name>
   <description>This is a Jet Demo</description>
+  
+  <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Automatic-Module-Name>com.hazelcast.jet.s3</Automatic-Module-Name>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>${maven.assembly.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>distro-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                            <tarLongFileMode>posix</tarLongFileMode>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
   
   <!--   May 2020 - Added for S3 --> 
   <dependencyManagement>
