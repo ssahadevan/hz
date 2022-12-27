@@ -3,7 +3,7 @@
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-     <hazelcast.jet.version>3.2.2</hazelcast.jet.version>
+     <hazelcast.jet.version>4.5.4</hazelcast.jet.version>
      <!--  Commented out
      <hazelcast.jet.version>4.1</hazelcast.jet.version>
      -->
